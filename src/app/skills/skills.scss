@@ -1,0 +1,18 @@
+section {
+  display: grid;
+  gap: 1rem;
+}
+
+mat-chip-set {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.level {
+  font-size: 16px;
+  margin-left: .25rem;
+  color: var(--mat-sys-primary);
+}
+
+

@@ -1,0 +1,12 @@
+<section id="contact">
+  <h2>Contact</h2>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <p>Email: <a href="mailto:{{ email }}">{{ email }}</a></p>
+      <p *ngIf="location">Location: {{ location }}</p>
+      <a mat-stroked-button color="primary" href="mailto:{{ email }}">Say Hello</a>
+    </mat-card-content>
+  </mat-card>
+</section>
+
+

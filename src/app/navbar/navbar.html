@@ -1,0 +1,32 @@
+<mat-sidenav-container class="nav-container">
+  <mat-sidenav #sidenav mode="over" class="mobile-nav" [autoFocus]="false">
+    <mat-nav-list dense>
+      <a mat-list-item href="#hero" (click)="sidenav.close()">Home</a>
+      <a mat-list-item href="#about" (click)="sidenav.close()">About</a>
+      <a mat-list-item href="#projects" (click)="sidenav.close()">Projects</a>
+      <a mat-list-item href="#skills" (click)="sidenav.close()">Skills</a>
+      <a mat-list-item href="#experience" (click)="sidenav.close()">Experience</a>
+      <a mat-list-item href="#contact" (click)="sidenav.close()">Contact</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()" class="mobile-menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a class="logo" href="#hero">
+      <img *ngIf="logoPath; else textLogo" [src]="logoPath" alt="Logo" height="28">
+      <ng-template #textLogo>❤️</ng-template>
+    </a>
+    <span class="spacer"></span>
+    <nav class="desktop-menu">
+      <a mat-button href="#about">About</a>
+      <a mat-button href="#projects">Projects</a>
+      <a mat-button href="#skills">Skills</a>
+      <a mat-button href="#experience">Experience</a>
+      <a mat-button href="#contact">Contact</a>
+    </nav>
+    <button mat-icon-button (click)="onToggleTheme()" aria-label="Toggle theme">
+      <mat-icon>{{ isDark() ? 'dark_mode' : 'light_mode' }}</mat-icon>
+    </button>
+  </mat-toolbar>
+</mat-sidenav-container>

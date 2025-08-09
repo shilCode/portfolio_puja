@@ -1,0 +1,11 @@
+<section id="skills">
+  <h2>{{ headline }}</h2>
+  <mat-chip-set aria-label="Skill set">
+    <mat-chip *ngFor="let s of skills()" selected>
+      {{ s.name }}
+      <mat-icon fontIcon="verified" class="level" aria-hidden="true"></mat-icon>
+    </mat-chip>
+  </mat-chip-set>
+</section>
+
+
