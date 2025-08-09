@@ -34,10 +34,10 @@ export type UserData = {
 };
 
 export const userData: UserData = {
-  name: 'Mita Sharma',
+  name: 'Puja Shil',
   jobDescription: 'Lead Generation | Web Research | Data Entry',
   links: {
-    upwork: 'https://www.upwork.com/freelancers/~01af90a0513f8ecb35?mp_source=share',
+    upwork: 'https://www.upwork.com/freelancers/~01703c57d504b663cf?mp_source=share',
     linkedin: 'https://www.linkedin.com/',
   },
   about: {
@@ -90,11 +90,11 @@ export const userData: UserData = {
     },
   ],
   contact: {
-    email: 'mita.sharma.0007@gmail.com',
+    email: 'puja.shil.0007@gmail.com',
     location: 'Remote',
   },
   footer: {
-    text: '© Mita Sharma',
+    text: '© Puja Shil',
   },
   logoPath: '/logo.png',
 };
