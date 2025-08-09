@@ -4,6 +4,7 @@
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
 @use "@angular/material" as mat;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 // Light theme
 :root,
@@ -19,6 +20,20 @@
       density: 0,
     )
   );
+  
+  // Custom CSS variables for consistent design tokens
+  --elevation-1: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --elevation-2: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  --elevation-3: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  --elevation-4: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 // Dark theme
@@ -34,8 +49,93 @@
       density: 0,
     )
   );
+  
+  // Dark theme specific shadows and gradients
+  --elevation-1: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --elevation-2: 0 3px 6px rgba(0, 0, 0, 0.4), 0 3px 6px rgba(0, 0, 0, 0.3);
+  --elevation-3: 0 10px 20px rgba(0, 0, 0, 0.5), 0 6px 6px rgba(0, 0, 0, 0.4);
+  --elevation-4: 0 14px 28px rgba(0, 0, 0, 0.6), 0 10px 10px rgba(0, 0, 0, 0.5);
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+
+// Global animations and keyframes
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+// Base styles
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   // Default the application to a light color theme. This can be changed to
@@ -49,40 +149,171 @@ body {
   background-color: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
-
-  // Reset the user agent margin.
-  margin: 0;
-}
-/* You can add global styles to this file, and also import other style files */
-
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  
+  // Add subtle background gradient
+  background: linear-gradient(135deg, var(--mat-sys-surface) 0%, var(--mat-sys-surface-variant) 100%);
+  background-attachment: fixed;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-h1, h2, h3 {
+// Typography improvements
+h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
+  font-weight: 600;
+  margin: 0;
+  color: var(--mat-sys-on-surface);
 }
 
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+}
+
+p {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  margin: 0;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+// Section spacing and animation
 main section {
-  margin-block: 2rem;
+  margin-block: 4rem;
+  animation: fadeInUp 0.6s ease-out;
+  
+  &:nth-child(odd) {
+    animation-delay: 0.1s;
+  }
+  
+  &:nth-child(even) {
+    animation-delay: 0.2s;
+  }
 }
 
-// Responsive utilities
+// Enhanced responsive utilities
 .container {
-  padding-inline: clamp(0.75rem, 2vw, 1.25rem);
+  padding-inline: clamp(1rem, 3vw, 2rem);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+// Button enhancements
+.mat-mdc-button,
+.mat-mdc-flat-button,
+.mat-mdc-stroked-button {
+  transition: all var(--transition-normal);
+  font-weight: 500;
+  border-radius: var(--border-radius-sm) !important;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--elevation-2);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.mat-mdc-flat-button {
+  background: var(--gradient-primary) !important;
+  
+  &:hover {
+    box-shadow: var(--elevation-3);
+    filter: brightness(1.1);
+  }
+}
+
+// Card enhancements
+.mat-mdc-card {
+  border-radius: var(--border-radius-md) !important;
+  transition: all var(--transition-normal);
+  border: 1px solid var(--mat-sys-outline-variant);
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--elevation-3);
+    border-color: var(--mat-sys-primary);
+  }
+}
+
+// Chip enhancements
+.mat-mdc-chip {
+  transition: all var(--transition-fast);
+  border-radius: var(--border-radius-sm) !important;
+  
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: var(--elevation-1);
+  }
+}
+
+// Scroll animations
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Loading states
+.loading {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+// Focus states
+*:focus-visible {
+  outline: 2px solid var(--mat-sys-primary);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-sm);
+}
+
+// Responsive breakpoints
+@media (max-width: 768px) {
+  main section {
+    margin-block: 3rem;
+  }
+  
+  .container {
+    padding-inline: 1rem;
+  }
 }
 
 @media (max-width: 600px) {
   mat-toolbar .desktop-menu a[mat-button] {
-    padding-inline: .25rem;
+    padding-inline: 0.25rem;
+  }
+  
+  main section {
+    margin-block: 2rem;
+  }
+}
+
+// Print styles
+@media print {
+  .mat-mdc-button,
+  .mat-toolbar,
+  .scroll-animate {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
   }
 }

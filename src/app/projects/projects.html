@@ -7,9 +7,9 @@
       </mat-card-header>
       <mat-card-content>
         <p>{{ p.description }}</p>
-        <mat-chip-set>
+        <div class="project-tags">
           <mat-chip *ngFor="let t of p.tags" selected>{{ t }}</mat-chip>
-        </mat-chip-set>
+        </div>
       </mat-card-content>
     </mat-card>
   </div>

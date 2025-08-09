@@ -1,46 +1,276 @@
 .nav-container {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
+  backdrop-filter: blur(20px);
+  background: color-mix(in oklab, var(--mat-sys-surface) 95%, transparent);
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+  transition: all var(--transition-normal);
+  
+  &.scrolled {
+    box-shadow: var(--elevation-2);
+    background: color-mix(in oklab, var(--mat-sys-surface) 98%, transparent);
+  }
+}
+
+mat-toolbar {
+  display: flex;
+  align-items: center;
+  padding: 0 clamp(1rem, 3vw, 2rem);
+  background: transparent !important;
+  transition: all var(--transition-normal);
 }
 
 .mobile-menu {
   display: none;
+  
+  .mat-mdc-icon-button {
+    transition: all var(--transition-fast);
+    border-radius: var(--border-radius-sm);
+    
+    &:hover {
+      transform: scale(1.1);
+      background: color-mix(in oklab, var(--mat-sys-primary) 10%, transparent);
+    }
+    
+    mat-icon {
+      transition: transform var(--transition-fast);
+    }
+    
+    &:active mat-icon {
+      transform: rotate(90deg);
+    }
+  }
 }
 
 .desktop-menu {
   display: flex;
-  gap: .25rem;
+  gap: 0.5rem;
+  
+  a {
+    position: relative;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: var(--border-radius-sm);
+    transition: all var(--transition-normal);
+    color: var(--mat-sys-on-surface);
+    overflow: hidden;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-accent);
+      transition: all var(--transition-normal);
+      transform: translateX(-50%);
+      border-radius: 1px;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: color-mix(in oklab, var(--mat-sys-primary) 10%, transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition-fast);
+      border-radius: var(--border-radius-sm);
+      z-index: -1;
+    }
+    
+    &:hover {
+      color: var(--mat-sys-primary);
+      transform: translateY(-2px);
+      
+      &::before {
+        width: 80%;
+      }
+      
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }
 }
 
 .mobile-nav {
   width: min(85vw, 320px);
+  background: var(--mat-sys-surface-container);
+  border-right: 1px solid var(--mat-sys-outline-variant);
+  
+  .mat-mdc-list-item {
+    transition: all var(--transition-fast);
+    border-radius: var(--border-radius-sm);
+    margin: 4px 8px;
+    
+    &:hover {
+      background: color-mix(in oklab, var(--mat-sys-primary) 10%, transparent);
+      transform: translateX(8px);
+      box-shadow: var(--elevation-1);
+    }
+    
+    &:active {
+      transform: translateX(4px);
+    }
+  }
 }
 
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: .5rem;
+  gap: 0.75rem;
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: inherit;
   text-decoration: none;
+  transition: all var(--transition-normal);
+  padding: 8px;
+  border-radius: var(--border-radius-sm);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    border-radius: var(--border-radius-sm);
+    z-index: -1;
+  }
+  
+  &:hover {
+    transform: scale(1.05);
+    color: white;
+    
+    &::before {
+      opacity: 1;
+    }
+  }
+  
+  &:active {
+    transform: scale(0.95);
+  }
+  
+  img {
+    transition: all var(--transition-normal);
+    border-radius: 50%;
+    
+    &:hover {
+      transform: rotate(10deg);
+    }
+  }
 }
 
 .spacer {
   flex: 1 1 auto;
 }
 
-mat-toolbar {
-  display: flex;
-  align-items: center;
+// Theme toggle button
+.mat-mdc-icon-button {
+  transition: all var(--transition-normal);
+  border-radius: var(--border-radius-sm);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-accent);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    border-radius: var(--border-radius-sm);
+    z-index: -1;
+  }
+  
+  &:hover {
+    transform: scale(1.1);
+    color: white;
+    
+    &::before {
+      opacity: 1;
+    }
+    
+    mat-icon {
+      transform: rotate(180deg);
+    }
+  }
+  
+  &:active {
+    transform: scale(0.9);
+  }
+  
+  mat-icon {
+    transition: transform var(--transition-normal);
+  }
 }
 
-@media (max-width: 600px) {
+// Navigation animation on scroll
+@keyframes navSlideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.nav-container {
+  animation: navSlideDown 0.3s ease-out;
+}
+
+// Responsive design
+@media (max-width: 768px) {
   .desktop-menu {
     display: none;
   }
+  
   .mobile-menu {
     display: inline-flex;
   }
+  
+  mat-toolbar {
+    padding: 0 1rem;
+  }
+  
+  .logo {
+    font-size: 1.25rem;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .mobile-nav {
+    width: min(90vw, 280px);
+  }
+}
+
+// Focus states for accessibility
+.desktop-menu a:focus-visible,
+.logo:focus-visible,
+.mat-mdc-icon-button:focus-visible {
+  outline: 2px solid var(--mat-sys-primary);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-sm);
 }

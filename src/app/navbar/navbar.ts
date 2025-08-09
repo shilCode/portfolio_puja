@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, HostBinding, HostListener, computed, inject } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { NgIf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,6 +25,20 @@ export class Navbar {
   private theme = inject(ThemeService);
   isDark = computed(() => this.theme.isDark());
   logoPath = userData.logoPath ?? '';
+  private hasScrolled = false;
+
+  @HostBinding('class.scrolled')
+  get scrolled(): boolean {
+    return this.hasScrolled;
+  }
+
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+    const newValue = window.scrollY > 8;
+    if (newValue !== this.hasScrolled) {
+      this.hasScrolled = newValue;
+    }
+  }
 
   onToggleTheme(): void {
     this.theme.toggle();
