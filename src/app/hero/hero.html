@@ -1,0 +1,14 @@
+<section id="hero" class="hero">
+  <div class="hero-content">
+    <h1>Hi, I'm <span class="accent">{{ name }}</span></h1>
+    <p class="subtitle">{{ subtitle }}</p>
+    <div class="cta">
+      <a mat-flat-button color="primary" href="{{ upwork }}" target="_blank" rel="noreferrer">Upwork</a>
+      <a mat-stroked-button color="primary" href="{{ linkedin }}" target="_blank" rel="noreferrer">LinkedIn</a>
+    </div>
+  </div>
+  <div class="hero-image" aria-hidden="true">
+    <img *ngIf="logoPath; else block" [src]="logoPath" alt="Profile logo" />
+    <ng-template #block></ng-template>
+  </div>
+</section>

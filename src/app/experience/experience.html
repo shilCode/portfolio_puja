@@ -1,0 +1,16 @@
+<section id="experience">
+  <h2>{{ headline }}</h2>
+  <div class="grid">
+    <mat-card *ngFor="let item of items()" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>{{ item.role }}</mat-card-title>
+        <mat-card-subtitle>{{ item.company }} • {{ item.period }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ item.details }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>
+
+

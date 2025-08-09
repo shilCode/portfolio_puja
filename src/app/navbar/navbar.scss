@@ -1,0 +1,46 @@
+.nav-container {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+.desktop-menu {
+  display: flex;
+  gap: .25rem;
+}
+
+.mobile-nav {
+  width: min(85vw, 320px);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .desktop-menu {
+    display: none;
+  }
+  .mobile-menu {
+    display: inline-flex;
+  }
+}

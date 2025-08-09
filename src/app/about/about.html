@@ -1,0 +1,14 @@
+<section id="about">
+  <h2>About Me</h2>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <p *ngIf="summary">{{ summary }}</p>
+      <ul *ngIf="highlights.length" class="highlights">
+        <li *ngFor="let h of highlights">{{ h }}</li>
+      </ul>
+    </mat-card-content>
+  </mat-card>
+  
+</section>
+
+
